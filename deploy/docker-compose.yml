@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  pigeon-ui:
+    image: ${DOCKER_REGISTRY-}pigeonui:latest
+    build:
+      context: ../
+      dockerfile: deploy/Dockerfile
+    ports:
+      - '8080:80'
+    environment:
+      - VUE_APP__i18n_locale=en-us
+      - VUE_APP__i18n_fallbackLocale=en-us
+      - VUE_APP__title=Project manager
+      - VUE_APP__initialRoutePath=/home
+      - VUE_APP__endpoints__projectManagerApi__baseUrl=http://localhost:5101/api/v1
+      - VUE_APP__identity__authority=http://localhost:9003
+      - VUE_APP__identity__clientId=ai_vuejs_code_client
+      - VUE_APP__identity__clientSecret=
+      - VUE_APP__identity__automaticSilentRenew=true
+      - VUE_APP__identity__responseType=code
+      - VUE_APP__identity__scope='openid profile email'
+      - VUE_APP__identity__filterProtocolClaims=true
+      - VUE_APP__identity__redirectUri=http://localhost:8080/authentication/oidc-login-redirect
+      - VUE_APP__identity__silentRedirectUri=http://localhost:8080/authentication/oidc-login-silent-renew
+      - VUE_APP__identity__postLogoutRedirectUri=http://localhost:8080/

@@ -18,10 +18,6 @@ Project manager API demo: https://pigeon-project-manager-backend.herokuapp.com/s
 
 ## Project setup
 ```
-cd src
-```
-
-```
 npm install
 ```
 

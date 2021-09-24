@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": ["jest", "webpack", "webpack-env"],
+    "paths": {
+      "app.core/*": ["app/app.core/*"],
+      "app.locales": ["app/app.locales"],
+      "app.locales/*": ["app/app.locales/*"],
+      "app.shell/*": ["app/app.shell/*"],
+      "app.router": ["app/app.router"],
+      "app.services": ["app/app.services"],
+      "app.services/*": ["app/app.services/*"],
+      "app.store": ["app/app.store"],
+      "app.store/*": ["app/app.store/*"],
+      "app.modules": ["app/app.modules"],
+      "~/*": ["app/*"]
+    },
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": ["app/**/*.ts", "app/**/*.d.ts", "app/**/*.tsx", "app/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
+  "exclude": ["/dist", "node_modules"]
+}
