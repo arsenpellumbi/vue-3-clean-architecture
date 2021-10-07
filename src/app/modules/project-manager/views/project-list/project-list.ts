@@ -1,12 +1,12 @@
 import { date } from 'quasar';
 
 import { Vue, Options } from 'vue-class-component';
-import { InjectDependency } from 'app.shell/decorators';
+import { InjectDependency } from '~/shell/decorators';
 
 import ProjectForm from '../../components/project-form.vue';
-import { InjectableType } from 'app.core/enums';
-import { Project } from 'app.core/models';
-import { IProjectStore } from 'app.core/interfaces/stores';
+import { InjectableType } from '~/core/enums';
+import { Project } from '~/core/models';
+import { IProjectStore } from '~/core/interfaces/stores';
 
 @Options({
   components: {

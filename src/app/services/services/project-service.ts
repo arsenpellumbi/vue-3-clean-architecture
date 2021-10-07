@@ -1,5 +1,5 @@
-import { Configurations } from 'app.core/configurations';
-import { RequestMethod } from 'app.core/enums';
+import { Configurations } from '~/core/configurations';
+import { RequestMethod } from '~/core/enums';
 import {
   GetProjectsPayload,
   SearchProjectsPayload,
@@ -7,9 +7,9 @@ import {
   CreateProjectPayload,
   UpdateProjectPayload,
   DeleteProjectPayload,
-} from 'app.core/interfaces/payloads';
-import { IProjectService } from 'app.core/interfaces/services';
-import { Project, ProjectList } from 'app.core/models';
+} from '~/core/interfaces/payloads';
+import { IProjectService } from '~/core/interfaces/services';
+import { Project, ProjectList } from '~/core/models';
 import { ApiService } from '~/services/api/api-service';
 import { AxiosResponse } from 'axios';
 import { injectable, inject } from 'inversify';

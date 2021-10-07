@@ -1,5 +1,5 @@
-import { TaskStoreState } from 'app.core/interfaces/stores';
-import { TaskList } from 'app.core/models';
+import { TaskStoreState } from '~/core/interfaces/stores';
+import { TaskList } from '~/core/models';
 
 export const useState = (): TaskStoreState => ({
   taskList: new TaskList(),

@@ -1,5 +1,5 @@
 import { injectable } from 'inversify';
-import { Module } from 'app.core/types';
+import { Module } from '~/core/types';
 import { HomeModule } from './home';
 import { ProjectManagerModule } from './project-manager';
 import { AuthenticationModule } from './authentication';

@@ -37,10 +37,10 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { InjectableType } from 'app.core/enums';
-import { IAuthenticationStore } from 'app.core/interfaces/stores';
-import { User } from 'app.core/models';
-import { InjectDependency } from 'app.shell/decorators';
+import { InjectableType } from '~/core/enums';
+import { IAuthenticationStore } from '~/core/interfaces/stores';
+import { User } from '~/core/models';
+import { InjectDependency } from '~/shell/decorators';
 
 export default class AppUserBadge extends Vue {
   @InjectDependency(InjectableType.IAuthenticationStore)

@@ -2,9 +2,9 @@ import { useState } from './state';
 import { useActions } from './actions';
 import { useGetters } from './getters';
 import { useMutations } from './mutations';
-import { AppStore } from 'app.store';
+import { AppStore } from '~/store';
 import { inject, injectable } from 'inversify';
-import { Project, ProjectList } from 'app.core/models';
+import { Project, ProjectList } from '~/core/models';
 import {
   GetProjectsPayload,
   SearchProjectsPayload,
@@ -12,11 +12,11 @@ import {
   UpdateProjectPayload,
   DeleteProjectPayload,
   GetProjectByIdPayload,
-} from 'app.core/interfaces/payloads';
-import { IProjectStore } from 'app.core/interfaces/stores';
-import { IProjectService } from 'app.core/interfaces/services';
-import { InjectableType } from 'app.core/enums';
-import { BaseStore } from 'app.store/base-store';
+} from '~/core/interfaces/payloads';
+import { IProjectStore } from '~/core/interfaces/stores';
+import { IProjectService } from '~/core/interfaces/services';
+import { InjectableType } from '~/core/enums';
+import { BaseStore } from '~/store/base-store';
 
 @injectable()
 export class ProjectStore extends BaseStore implements IProjectStore {

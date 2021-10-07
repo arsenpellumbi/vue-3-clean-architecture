@@ -1,4 +1,4 @@
-import { Module } from 'app.core/types';
+import { Module } from '~/core/types';
 import { RouteRecordRaw } from 'vue-router';
 import Layout from './index.vue';
 

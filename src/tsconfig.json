@@ -17,20 +17,6 @@
     "baseUrl": ".",
     "types": ["jest", "webpack", "webpack-env"],
     "paths": {
-      "app.core": ["app/core"],
-      "app.core/*": ["app/core/*"],
-      "app.locales": ["app/locales"],
-      "app.locales/*": ["app/locales/*"],
-      "app.shell": ["app/shell"],
-      "app.shell/*": ["app/shell/*"],
-      "app.router": ["app/router"],
-      "app.router/*": ["app/router/*"],
-      "app.services": ["app/services"],
-      "app.services/*": ["app/services/*"],
-      "app.store": ["app/store"],
-      "app.store/*": ["app/store/*"],
-      "app.modules": ["app/modules"],
-      "app.modules/*": ["app/modules/*"],
       "~/*": ["app/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]

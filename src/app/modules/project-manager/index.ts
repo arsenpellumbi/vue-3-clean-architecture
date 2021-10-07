@@ -1,7 +1,7 @@
 import Layout from './index.vue';
 import projectListRoute from './views/project-list';
 import projectItemRoute from './views/project-item';
-import { Module } from 'app.core/types';
+import { Module } from '~/core/types';
 import { RouteRecordRaw } from 'vue-router';
 
 export class ProjectManagerModule implements Module {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { injectable } from 'inversify';
-import { IIndexDbService } from 'app.core/interfaces/services';
+import { IIndexDbService } from '~/core/interfaces/services';
 
 const _appIndexedDbCollections = ['Projects', 'Tasks'];
 let _appIndexedDB: IDBDatabase | null = null;

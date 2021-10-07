@@ -21,10 +21,10 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { InjectDependency } from 'app.shell/decorators';
-import { InjectableType } from 'app.core/enums';
-import { IAuthenticationStore } from 'app.core/interfaces/stores';
-import { Configurations } from 'app.core/configurations';
+import { InjectDependency } from '~/shell/decorators';
+import { InjectableType } from '~/core/enums';
+import { IAuthenticationStore } from '~/core/interfaces/stores';
+import { Configurations } from '~/core/configurations';
 
 export default class OidcLogin extends Vue {
   @InjectDependency(InjectableType.IAuthenticationStore)

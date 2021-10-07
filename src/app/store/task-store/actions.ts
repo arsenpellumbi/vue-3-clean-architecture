@@ -1,4 +1,4 @@
-import { TaskList, Task } from 'app.core/models';
+import { TaskList, Task } from '~/core/models';
 import {
   GetTasksByProjectIdPayload,
   SearchTasksInProjectPayload,
@@ -6,9 +6,9 @@ import {
   CreateTaskPayload,
   UpdateTaskPayload,
   DeleteTaskPayload,
-} from 'app.core/interfaces/payloads';
-import { ITaskService } from 'app.core/interfaces/services';
-import { TaskStoreState, AppStoreState } from 'app.core/interfaces/stores';
+} from '~/core/interfaces/payloads';
+import { ITaskService } from '~/core/interfaces/services';
+import { TaskStoreState, AppStoreState } from '~/core/interfaces/stores';
 import { ActionTree, ActionContext } from 'vuex';
 
 export const useActions = (taskService: ITaskService): ActionTree<TaskStoreState, AppStoreState> => ({

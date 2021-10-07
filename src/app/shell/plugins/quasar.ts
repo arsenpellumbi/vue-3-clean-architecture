@@ -3,7 +3,7 @@ import iconSet from 'quasar/icon-set/mdi-v4.js';
 import '@quasar/extras/roboto-font/roboto-font.css';
 import '@quasar/extras/mdi-v4/mdi-v4.css';
 import { Quasar, Notify, LoadingBar } from 'quasar';
-import { PluginParams } from 'app.core/types';
+import { PluginParams } from '~/core/types';
 
 export default function <TStore>({ app }: PluginParams<TStore>) {
   app.use(Quasar, {

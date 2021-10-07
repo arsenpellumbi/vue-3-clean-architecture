@@ -1,4 +1,4 @@
-import { TaskType } from 'app.core/enums';
+import { TaskType } from '~/core/enums';
 
 export interface CreateTaskPayload {
   readonly title: string;

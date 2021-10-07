@@ -1,4 +1,4 @@
-import { Project, ProjectList } from 'app.core/models';
+import { Project, ProjectList } from '~/core/models';
 import {
   GetProjectsPayload,
   SearchProjectsPayload,

@@ -1,7 +1,7 @@
 import Layout from './index.vue';
 import error404Route from './views/404';
 import error500Route from './views/500';
-import { Module } from 'app.core/types';
+import { Module } from '~/core/types';
 import { RouteRecordRaw } from 'vue-router';
 
 export class ErrorModule implements Module {

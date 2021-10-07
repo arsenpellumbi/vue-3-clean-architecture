@@ -1,6 +1,6 @@
 import { injectable, inject } from 'inversify';
-import { Configurations } from 'app.core/configurations';
-import { AppStoreState } from 'app.core/interfaces/stores';
+import { Configurations } from '~/core/configurations';
+import { AppStoreState } from '~/core/interfaces/stores';
 import { createStore, Store } from 'vuex';
 
 @injectable()

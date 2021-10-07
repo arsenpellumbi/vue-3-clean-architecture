@@ -1,5 +1,5 @@
-import { InjectableType } from 'app.core/enums';
-import { IAuthenticationStore, IProjectStore, ITaskStore } from 'app.core/interfaces/stores';
+import { InjectableType } from '~/core/enums';
+import { IAuthenticationStore, IProjectStore, ITaskStore } from '~/core/interfaces/stores';
 import { injectable, ContainerModule, interfaces } from 'inversify';
 import { AuthenticationStore } from './authentication-store';
 import { ProjectStore } from './project-store';

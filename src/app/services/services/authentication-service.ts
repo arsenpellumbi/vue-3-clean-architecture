@@ -1,6 +1,6 @@
-import { Configurations } from 'app.core/configurations';
-import { IAuthenticationService } from 'app.core/interfaces/services';
-import { User } from 'app.core/models';
+import { Configurations } from '~/core/configurations';
+import { IAuthenticationService } from '~/core/interfaces/services';
+import { User } from '~/core/models';
 import { injectable, inject } from 'inversify';
 import { UserManager, UserManagerSettings, WebStorageStateStore } from 'oidc-client';
 

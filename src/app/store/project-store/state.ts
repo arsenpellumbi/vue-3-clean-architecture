@@ -1,5 +1,5 @@
-import { ProjectStoreState } from 'app.core/interfaces/stores';
-import { ProjectList } from 'app.core/models';
+import { ProjectStoreState } from '~/core/interfaces/stores';
+import { ProjectList } from '~/core/models';
 
 export const useState = (): ProjectStoreState => ({
   projectList: new ProjectList(),

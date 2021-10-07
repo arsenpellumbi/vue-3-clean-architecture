@@ -1,14 +1,14 @@
-import { InjectableType } from 'app.core/enums';
-import { User } from 'app.core/models';
-import { IAuthenticationService } from 'app.core/interfaces/services';
-import { IAuthenticationStore } from 'app.core/interfaces/stores';
+import { InjectableType } from '~/core/enums';
+import { User } from '~/core/models';
+import { IAuthenticationService } from '~/core/interfaces/services';
+import { IAuthenticationStore } from '~/core/interfaces/stores';
 import { injectable, inject } from 'inversify';
 import { useActions } from './actions';
 import { useGetters } from './getters';
 import { useMutations } from './mutations';
 import { useState } from './state';
-import { AppStore } from 'app.store';
-import { BaseStore } from 'app.store/base-store';
+import { AppStore } from '~/store';
+import { BaseStore } from '~/store/base-store';
 
 @injectable()
 export class AuthenticationStore extends BaseStore implements IAuthenticationStore {

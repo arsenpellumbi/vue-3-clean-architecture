@@ -1,5 +1,5 @@
-import { User } from 'app.core/models';
-import { AuthenticationStoreState, AppStoreState } from 'app.core/interfaces/stores';
+import { User } from '~/core/models';
+import { AuthenticationStoreState, AppStoreState } from '~/core/interfaces/stores';
 import { GetterTree } from 'vuex';
 
 export const useGetters = (): GetterTree<AuthenticationStoreState, AppStoreState> => ({

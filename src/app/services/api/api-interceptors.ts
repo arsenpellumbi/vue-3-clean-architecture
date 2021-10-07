@@ -1,8 +1,8 @@
 import { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
 import { inject, injectable } from 'inversify';
-import { InjectableType } from 'app.core/enums';
-import { IToastService } from 'app.core/interfaces/services';
-import { IAuthenticationStore } from 'app.core/interfaces/stores';
+import { InjectableType } from '~/core/enums';
+import { IToastService } from '~/core/interfaces/services';
+import { IAuthenticationStore } from '~/core/interfaces/stores';
 import { AppRouter } from '~/router';
 
 @injectable()

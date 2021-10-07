@@ -1,6 +1,6 @@
 import { Notify } from 'quasar';
 import { injectable } from 'inversify';
-import { IToastService } from 'app.core/interfaces/services';
+import { IToastService } from '~/core/interfaces/services';
 
 @injectable()
 export class ToastService implements IToastService {

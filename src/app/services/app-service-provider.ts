@@ -1,11 +1,11 @@
-import { InjectableType } from 'app.core/enums';
+import { InjectableType } from '~/core/enums';
 import {
   IIndexDbService,
   IToastService,
   IAuthenticationService,
   IProjectService,
   ITaskService,
-} from 'app.core/interfaces/services';
+} from '~/core/interfaces/services';
 import { injectable, ContainerModule, interfaces } from 'inversify';
 import { AuthenticationService } from './services/authentication-service';
 import { IndexDbService } from './services/index-db-service';

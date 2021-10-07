@@ -1,6 +1,6 @@
 import { GetterTree } from 'vuex';
-import { AppStoreState, ProjectStoreState } from 'app.core/interfaces/stores';
-import { ProjectList } from 'app.core/models';
+import { AppStoreState, ProjectStoreState } from '~/core/interfaces/stores';
+import { ProjectList } from '~/core/models';
 
 export const useGetters = (): GetterTree<ProjectStoreState, AppStoreState> => ({
   projectList(state: ProjectStoreState): ProjectList {

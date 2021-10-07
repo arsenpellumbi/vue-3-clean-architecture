@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { injectable } from 'inversify';
-import { RequestOptions } from 'app.core/types';
+import { RequestOptions } from '~/core/types';
 
 @injectable()
 export class ApiService {

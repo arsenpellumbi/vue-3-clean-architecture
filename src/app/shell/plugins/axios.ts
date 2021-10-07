@@ -1,5 +1,5 @@
 import { ApiInterceptor } from '~/services/api/api-interceptors';
-import { PluginParams } from 'app.core/types';
+import { PluginParams } from '~/core/types';
 import { container } from '~/inversify.config';
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 

@@ -7,9 +7,9 @@
   </div>
 </template>
 <script lang="ts">
-import { InjectableType } from 'app.core/enums';
-import { IAuthenticationStore } from 'app.core/interfaces/stores';
-import { InjectDependency } from 'app.shell/decorators';
+import { InjectableType } from '~/core/enums';
+import { IAuthenticationStore } from '~/core/interfaces/stores';
+import { InjectDependency } from '~/shell/decorators';
 import { Vue } from 'vue-class-component';
 
 export default class App extends Vue {

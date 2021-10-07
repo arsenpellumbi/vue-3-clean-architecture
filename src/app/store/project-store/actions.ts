@@ -1,4 +1,4 @@
-import { ProjectList, Project } from 'app.core/models';
+import { ProjectList, Project } from '~/core/models';
 import {
   GetProjectsPayload,
   SearchProjectsPayload,
@@ -6,9 +6,9 @@ import {
   CreateProjectPayload,
   UpdateProjectPayload,
   DeleteProjectPayload,
-} from 'app.core/interfaces/payloads';
-import { IProjectService } from 'app.core/interfaces/services';
-import { ProjectStoreState, AppStoreState } from 'app.core/interfaces/stores';
+} from '~/core/interfaces/payloads';
+import { IProjectService } from '~/core/interfaces/services';
+import { ProjectStoreState, AppStoreState } from '~/core/interfaces/stores';
 import { ActionTree, ActionContext } from 'vuex';
 
 export const useActions = (projectService: IProjectService): ActionTree<ProjectStoreState, AppStoreState> => ({

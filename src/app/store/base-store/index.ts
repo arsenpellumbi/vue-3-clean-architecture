@@ -1,7 +1,7 @@
 import { injectable, unmanaged } from 'inversify';
-import { AppStoreState, IBaseStore } from 'app.core/interfaces/stores';
+import { AppStoreState, IBaseStore } from '~/core/interfaces/stores';
 import { Store } from 'vuex';
-import { AppStore } from 'app.store';
+import { AppStore } from '~/store';
 
 @injectable()
 export class BaseStore implements IBaseStore {

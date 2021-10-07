@@ -53,13 +53,13 @@
 <script lang="ts">
 /* eslint-disable no-undef */
 import { Vue, Options, prop } from 'vue-class-component';
-import { InjectDependency } from 'app.shell/decorators';
-import { InjectableType as CoreInjectableType } from 'app.core/enums';
-import { InjectableType } from 'app.core/enums';
-import { TaskType } from 'app.core/enums';
-import { IToastService } from 'app.core/interfaces/services';
-import { ITaskStore } from 'app.core/interfaces/stores';
-import { Task } from 'app.core/models';
+import { InjectDependency } from '~/shell/decorators';
+import { InjectableType as CoreInjectableType } from '~/core/enums';
+import { InjectableType } from '~/core/enums';
+import { TaskType } from '~/core/enums';
+import { IToastService } from '~/core/interfaces/services';
+import { ITaskStore } from '~/core/interfaces/stores';
+import { Task } from '~/core/models';
 
 class Props {
   readonly projectId = prop<Guid>({

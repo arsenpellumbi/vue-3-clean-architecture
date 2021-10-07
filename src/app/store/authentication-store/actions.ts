@@ -1,6 +1,6 @@
 import { ActionTree, ActionContext } from 'vuex';
-import { AppStoreState, AuthenticationStoreState } from 'app.core/interfaces/stores';
-import { IAuthenticationService } from 'app.core/interfaces/services';
+import { AppStoreState, AuthenticationStoreState } from '~/core/interfaces/stores';
+import { IAuthenticationService } from '~/core/interfaces/services';
 
 export const useActions = (
   authenticationService: IAuthenticationService

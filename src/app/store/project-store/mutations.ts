@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex';
-import { Project, ProjectList } from 'app.core/models';
-import { ProjectStoreState } from 'app.core/interfaces/stores';
+import { Project, ProjectList } from '~/core/models';
+import { ProjectStoreState } from '~/core/interfaces/stores';
 
 export const useMutations = (): MutationTree<ProjectStoreState> => ({
   setProjects(state: ProjectStoreState, projectList: ProjectList): void {

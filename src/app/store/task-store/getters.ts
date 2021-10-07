@@ -1,6 +1,6 @@
 import { GetterTree } from 'vuex';
-import { TaskList } from 'app.core/models';
-import { AppStoreState, TaskStoreState } from 'app.core/interfaces/stores';
+import { TaskList } from '~/core/models';
+import { AppStoreState, TaskStoreState } from '~/core/interfaces/stores';
 
 export const useGetters = (): GetterTree<TaskStoreState, AppStoreState> => ({
   taskList(state: TaskStoreState): TaskList {

@@ -4,8 +4,8 @@ import { useGetters } from './getters';
 import { useMutations } from './mutations';
 
 import { injectable, inject } from 'inversify';
-import { InjectableType } from 'app.core/enums';
-import { Task, TaskList } from 'app.core/models';
+import { InjectableType } from '~/core/enums';
+import { Task, TaskList } from '~/core/models';
 import {
   GetTasksByProjectIdPayload,
   SearchTasksInProjectPayload,
@@ -13,11 +13,11 @@ import {
   UpdateTaskPayload,
   DeleteTaskPayload,
   GetTaskByIdPayload,
-} from 'app.core/interfaces/payloads';
-import { ITaskService } from 'app.core/interfaces/services';
-import { ITaskStore } from 'app.core/interfaces/stores';
-import { AppStore } from 'app.store';
-import { BaseStore } from 'app.store/base-store';
+} from '~/core/interfaces/payloads';
+import { ITaskService } from '~/core/interfaces/services';
+import { ITaskStore } from '~/core/interfaces/stores';
+import { AppStore } from '~/store';
+import { BaseStore } from '~/store/base-store';
 
 @injectable()
 export class TaskStore extends BaseStore implements ITaskStore {

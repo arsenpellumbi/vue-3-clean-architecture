@@ -3,7 +3,7 @@ import { Configurations } from './core/configurations';
 import { ModuleProvider } from './modules';
 import { AppRouter } from './router';
 import { ApiInterceptor, AppServiceProvider } from './services';
-import { AppStore, AppStoreProvider } from 'app.store';
+import { AppStore, AppStoreProvider } from '~/store';
 
 const container = new Container();
 

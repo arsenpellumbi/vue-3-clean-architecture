@@ -15,9 +15,9 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { InjectDependency } from 'app.shell/decorators';
-import { InjectableType } from 'app.core/enums';
-import { IAuthenticationStore } from 'app.core/interfaces/stores';
+import { InjectDependency } from '~/shell/decorators';
+import { InjectableType } from '~/core/enums';
+import { IAuthenticationStore } from '~/core/interfaces/stores';
 
 export default class OidcLoginRedirect extends Vue {
   @InjectDependency(InjectableType.IAuthenticationStore)

@@ -50,12 +50,12 @@
 
 <script lang="ts">
 import { Vue, prop, Options } from 'vue-class-component';
-import { InjectDependency } from 'app.shell/decorators';
-import { IToastService } from 'app.core/interfaces/services';
-import { InjectableType as CoreInjectableType } from 'app.core/enums';
-import { InjectableType } from 'app.core/enums';
-import { IProjectStore } from 'app.core/interfaces/stores';
-import { Project } from 'app.core/models';
+import { InjectDependency } from '~/shell/decorators';
+import { IToastService } from '~/core/interfaces/services';
+import { InjectableType as CoreInjectableType } from '~/core/enums';
+import { InjectableType } from '~/core/enums';
+import { IProjectStore } from '~/core/interfaces/stores';
+import { Project } from '~/core/models';
 
 class Props {
   readonly project = prop<Project>({

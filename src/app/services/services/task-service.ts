@@ -1,5 +1,5 @@
-import { Configurations } from 'app.core/configurations';
-import { RequestMethod, TaskType } from 'app.core/enums';
+import { Configurations } from '~/core/configurations';
+import { RequestMethod, TaskType } from '~/core/enums';
 import {
   GetTasksByProjectIdPayload,
   SearchTasksInProjectPayload,
@@ -7,9 +7,9 @@ import {
   CreateTaskPayload,
   UpdateTaskPayload,
   DeleteTaskPayload,
-} from 'app.core/interfaces/payloads';
-import { ITaskService } from 'app.core/interfaces/services';
-import { Task, TaskList } from 'app.core/models';
+} from '~/core/interfaces/payloads';
+import { ITaskService } from '~/core/interfaces/services';
+import { Task, TaskList } from '~/core/models';
 import { ApiService } from '~/services/api/api-service';
 import { AxiosResponse } from 'axios';
 import { injectable, inject } from 'inversify';

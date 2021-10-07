@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex';
-import { Task, TaskList } from 'app.core/models';
-import { TaskStoreState } from 'app.core/interfaces/stores';
+import { Task, TaskList } from '~/core/models';
+import { TaskStoreState } from '~/core/interfaces/stores';
 
 export const useMutations = (): MutationTree<TaskStoreState> => ({
   setTasks(state: TaskStoreState, taskList: TaskList): void {

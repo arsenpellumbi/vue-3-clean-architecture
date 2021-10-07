@@ -1,4 +1,4 @@
-import { TaskType } from 'app.core/enums';
+import { TaskType } from '~/core/enums';
 import { PaginatedList } from './pagination.model';
 
 export class Task {

@@ -1,9 +1,9 @@
 import navigationGuard from './navigation-guards';
 import { inject, injectable } from 'inversify';
-import { InjectableType } from 'app.core/enums';
-import { IAuthenticationStore } from 'app.core/interfaces/stores';
+import { InjectableType } from '~/core/enums';
+import { IAuthenticationStore } from '~/core/interfaces/stores';
 import { ModuleProvider } from '~/modules';
-import { Configurations } from 'app.core/configurations';
+import { Configurations } from '~/core/configurations';
 import { Router, createRouter, createWebHistory, RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
 
 @injectable()

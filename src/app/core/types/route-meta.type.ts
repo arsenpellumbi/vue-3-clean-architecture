@@ -1,4 +1,4 @@
-import { AppStoreState } from 'app.core/interfaces/stores';
+import { AppStoreState } from '~/core/interfaces/stores';
 import { Route, Location } from 'vue-router';
 import { Store } from 'vuex';
 

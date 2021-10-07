@@ -1,4 +1,4 @@
-import { Task, TaskList } from 'app.core/models';
+import { Task, TaskList } from '~/core/models';
 import {
   GetTasksByProjectIdPayload,
   SearchTasksInProjectPayload,

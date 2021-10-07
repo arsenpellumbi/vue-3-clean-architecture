@@ -1,4 +1,4 @@
-import { User } from 'app.core/models';
+import { User } from '~/core/models';
 import { IBaseStore } from './base-store.interface';
 
 export interface AuthenticationStoreState {

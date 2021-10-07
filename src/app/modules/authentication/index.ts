@@ -5,7 +5,7 @@ import oidcLoginRoute from './views/oidc-login';
 import oidcLoginRedirectRoute from './views/oidc-login-redirect';
 import oidcLogoutRedirectRoute from './views/oidc-logout-redirect';
 import oidcLoginSilentRenewRoute from './views/oidc-login-silent-renew';
-import { Module } from 'app.core/types';
+import { Module } from '~/core/types';
 import { RouteRecordRaw } from 'vue-router';
 
 export class AuthenticationModule implements Module {
