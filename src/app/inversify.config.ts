@@ -1,8 +1,8 @@
 import { Container } from 'inversify';
-import { Configurations } from './app.core/configurations';
-import { ModuleProvider } from './app.modules';
-import { AppRouter } from './app.router';
-import { ApiInterceptor, AppServiceProvider } from './app.services';
+import { Configurations } from './core/configurations';
+import { ModuleProvider } from './modules';
+import { AppRouter } from './router';
+import { ApiInterceptor, AppServiceProvider } from './services';
 import { AppStore, AppStoreProvider } from 'app.store';
 
 const container = new Container();
