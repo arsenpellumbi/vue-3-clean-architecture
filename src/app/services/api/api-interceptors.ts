@@ -1,20 +1,22 @@
 import { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios';
-import { inject, injectable } from 'inversify';
-import { InjectableType } from '~/core/enums';
-import { IToastService } from '~/core/interfaces/services';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
-import { AppRouter } from '~/router';
+import { provide } from '~/inversify.config';
+import { inject, interfaces } from 'inversify';
+import { AppRouter, APP_ROUTER } from '~/router/app-router';
+import { AuthenticationStore, AUTHENTICATION_STORE } from '~/store/authentication-store';
+import { ToastService, TOAST_SERVICE } from '../toast-service';
 
-@injectable()
+export const API_INTERCEPTOR: interfaces.ServiceIdentifier<ApiInterceptor> = 'API_INTERCEPTOR';
+
+@provide<ApiInterceptor>(API_INTERCEPTOR)
 export class ApiInterceptor {
   private readonly _appRouter: AppRouter;
-  private readonly _toast: IToastService;
-  private readonly _authenticationStore: IAuthenticationStore;
+  private readonly _toast: ToastService;
+  private readonly _authenticationStore: AuthenticationStore;
 
   constructor(
-    @inject(AppRouter) appRouter: AppRouter,
-    @inject(InjectableType.IToastService) toastService: IToastService,
-    @inject(InjectableType.IAuthenticationStore) authenticationStore: IAuthenticationStore
+    @inject(APP_ROUTER) appRouter: AppRouter,
+    @inject(TOAST_SERVICE) toastService: ToastService,
+    @inject(AUTHENTICATION_STORE) authenticationStore: AuthenticationStore
   ) {
     this._appRouter = appRouter;
     this._toast = toastService;

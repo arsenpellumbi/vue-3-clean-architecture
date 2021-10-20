@@ -1,9 +1,10 @@
 import { ActionTree, ActionContext } from 'vuex';
-import { AppStoreState, AuthenticationStoreState } from '~/core/interfaces/stores';
-import { IAuthenticationService } from '~/core/interfaces/services';
+import { AuthenticationService } from '~/services/authentication-service';
+import { AppStoreState } from '../app-store';
+import { AuthenticationStoreState } from './state';
 
 export const useActions = (
-  authenticationService: IAuthenticationService
+  authenticationService: AuthenticationService
 ): ActionTree<AuthenticationStoreState, AppStoreState> => ({
   async login(context: ActionContext<AuthenticationStoreState, AppStoreState>, returnPath: string): Promise<void> {
     context.commit('setIsAuthenticating', true);

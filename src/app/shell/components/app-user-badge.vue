@@ -37,14 +37,13 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { InjectableType } from '~/core/enums';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
+import { lazyInject } from '~/inversify.config';
 import { User } from '~/core/models';
-import { InjectDependency } from '~/shell/decorators';
+import { AuthenticationStore, AUTHENTICATION_STORE } from '~/store/authentication-store';
 
 export default class AppUserBadge extends Vue {
-  @InjectDependency(InjectableType.IAuthenticationStore)
-  private readonly _authenticationStore!: IAuthenticationStore;
+  @lazyInject(AUTHENTICATION_STORE)
+  private readonly _authenticationStore!: AuthenticationStore;
 
   get user() {
     return this._authenticationStore.user || new User();

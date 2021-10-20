@@ -1,31 +1,29 @@
+import { inject, interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
+
 import { useState } from './state';
 import { useActions } from './actions';
 import { useGetters } from './getters';
 import { useMutations } from './mutations';
 
-import { injectable, inject } from 'inversify';
-import { InjectableType } from '~/core/enums';
 import { Task, TaskList } from '~/core/models';
-import {
-  GetTasksByProjectIdPayload,
-  SearchTasksInProjectPayload,
-  CreateTaskPayload,
-  UpdateTaskPayload,
-  DeleteTaskPayload,
-  GetTaskByIdPayload,
-} from '~/core/interfaces/payloads';
-import { ITaskService } from '~/core/interfaces/services';
-import { ITaskStore } from '~/core/interfaces/stores';
-import { AppStore } from '~/store';
-import { BaseStore } from '~/store/base-store';
+import { TaskPayloads } from '~/core/payloads';
+import { AppStore, APP_STORE } from '../app-store';
+import { TaskService, TASK_SERVICE } from '~/services/task-service';
 
-@injectable()
-export class TaskStore extends BaseStore implements ITaskStore {
-  constructor(@inject(AppStore) store: AppStore, @inject(InjectableType.ITaskService) taskService: ITaskService) {
-    super(store, 'project-manager/task-store');
+export const TASK_STORE: interfaces.ServiceIdentifier<TaskStore> = 'TASK_STORE';
 
-    if (!this.store.hasModule(this.namespace)) {
-      this.store.registerModule(this.namespace, {
+@provide<TaskStore>(TASK_STORE)
+export class TaskStore {
+  private readonly _namespace: string;
+  private readonly _appStore: AppStore;
+
+  constructor(@inject(APP_STORE) store: AppStore, @inject(TASK_SERVICE) taskService: TaskService) {
+    this._namespace = 'project-manager/task-store';
+    this._appStore = store;
+
+    if (!this._appStore.store.hasModule(this._namespace)) {
+      this._appStore.store.registerModule(this._namespace, {
         namespaced: true,
         actions: useActions(taskService),
         getters: useGetters(),
@@ -36,34 +34,34 @@ export class TaskStore extends BaseStore implements ITaskStore {
   }
 
   get taskList(): TaskList {
-    return (this.store.getters as { [key: string]: TaskList })[`${this.namespace}/taskList`];
+    return (this._appStore.store.getters as { [key: string]: TaskList })[`${this._namespace}/taskList`];
   }
 
-  async fetchTasks(payload: GetTasksByProjectIdPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/fetchTasks`, payload);
+  async fetchTasks(payload: TaskPayloads.GetTasksByProjectIdPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/fetchTasks`, payload);
   }
 
-  async searchTasks(payload: SearchTasksInProjectPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/searchTasks`, payload);
+  async searchTasks(payload: TaskPayloads.SearchTasksInProjectPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/searchTasks`, payload);
   }
 
-  async createTask(payload: CreateTaskPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/createTask`, payload);
+  async createTask(payload: TaskPayloads.CreateTaskPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/createTask`, payload);
   }
 
-  async updateTask(payload: UpdateTaskPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/updateTask`, payload);
+  async updateTask(payload: TaskPayloads.UpdateTaskPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/updateTask`, payload);
   }
 
-  async deleteTask(payload: DeleteTaskPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/deleteTask`, payload);
+  async deleteTask(payload: TaskPayloads.DeleteTaskPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/deleteTask`, payload);
   }
 
-  async getTaskById(payload: GetTaskByIdPayload): Promise<Task> {
-    return (await this.store.dispatch(`${this.namespace}/getTaskById`, payload)) as Promise<Task>;
+  async getTaskById(payload: TaskPayloads.GetTaskByIdPayload): Promise<Task> {
+    return (await this._appStore.store.dispatch(`${this._namespace}/getTaskById`, payload)) as Promise<Task>;
   }
 
   async reset(): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/reset`);
+    await this._appStore.store.dispatch(`${this._namespace}/reset`);
   }
 }

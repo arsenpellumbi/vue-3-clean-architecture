@@ -1,33 +1,27 @@
+import { inject, interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
 import { useState } from './state';
 import { useActions } from './actions';
 import { useGetters } from './getters';
 import { useMutations } from './mutations';
-import { AppStore } from '~/store';
-import { inject, injectable } from 'inversify';
 import { Project, ProjectList } from '~/core/models';
-import {
-  GetProjectsPayload,
-  SearchProjectsPayload,
-  CreateProjectPayload,
-  UpdateProjectPayload,
-  DeleteProjectPayload,
-  GetProjectByIdPayload,
-} from '~/core/interfaces/payloads';
-import { IProjectStore } from '~/core/interfaces/stores';
-import { IProjectService } from '~/core/interfaces/services';
-import { InjectableType } from '~/core/enums';
-import { BaseStore } from '~/store/base-store';
+import { ProjectPayloads } from '~/core/payloads';
+import { ProjectService, PROJECT_SERVICE } from '~/services/project-service';
+import { AppStore, APP_STORE } from '../app-store';
 
-@injectable()
-export class ProjectStore extends BaseStore implements IProjectStore {
-  constructor(
-    @inject(AppStore) store: AppStore,
-    @inject(InjectableType.IProjectService) projectService: IProjectService
-  ) {
-    super(store, 'project-manager/project-store');
+export const PROJECT_STORE: interfaces.ServiceIdentifier<ProjectStore> = 'PROJECT_STORE';
 
-    if (!this.store.hasModule(this.namespace)) {
-      this.store.registerModule(this.namespace, {
+@provide<ProjectStore>(PROJECT_STORE)
+export class ProjectStore {
+  private readonly _namespace: string;
+  private readonly _appStore: AppStore;
+
+  constructor(@inject(APP_STORE) appStore: AppStore, @inject(PROJECT_SERVICE) projectService: ProjectService) {
+    this._namespace = 'project-manager/project-store';
+    this._appStore = appStore;
+
+    if (!this._appStore.store.hasModule(this._namespace)) {
+      this._appStore.store.registerModule(this._namespace, {
         namespaced: true,
         actions: useActions(projectService),
         getters: useGetters(),
@@ -38,34 +32,34 @@ export class ProjectStore extends BaseStore implements IProjectStore {
   }
 
   get projectList(): ProjectList {
-    return (this.store.getters as { [key: string]: ProjectList })[`${this.namespace}/projectList`];
+    return (this._appStore.store.getters as { [key: string]: ProjectList })[`${this._namespace}/projectList`];
   }
 
-  async fetchProjects(payload: GetProjectsPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/fetchProjects`, payload);
+  async fetchProjects(payload: ProjectPayloads.GetProjectsPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/fetchProjects`, payload);
   }
 
-  async searchProjects(payload: SearchProjectsPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/searchProjects`, payload);
+  async searchProjects(payload: ProjectPayloads.SearchProjectsPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/searchProjects`, payload);
   }
 
-  async createProject(payload: CreateProjectPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/createProject`, payload);
+  async createProject(payload: ProjectPayloads.CreateProjectPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/createProject`, payload);
   }
 
-  async updateProject(payload: UpdateProjectPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/updateProject`, payload);
+  async updateProject(payload: ProjectPayloads.UpdateProjectPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/updateProject`, payload);
   }
 
-  async deleteProject(payload: DeleteProjectPayload): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/deleteProject`, payload);
+  async deleteProject(payload: ProjectPayloads.DeleteProjectPayload): Promise<void> {
+    await this._appStore.store.dispatch(`${this._namespace}/deleteProject`, payload);
   }
 
-  async getProjectById(payload: GetProjectByIdPayload): Promise<Project> {
-    return (await this.store.dispatch(`${this.namespace}/getProjectById`, payload)) as Promise<Project>;
+  async getProjectById(payload: ProjectPayloads.GetProjectByIdPayload): Promise<Project> {
+    return (await this._appStore.store.dispatch(`${this._namespace}/getProjectById`, payload)) as Promise<Project>;
   }
 
   async reset(): Promise<void> {
-    await this.store.dispatch(`${this.namespace}/reset`);
+    await this._appStore.store.dispatch(`${this._namespace}/reset`);
   }
 }

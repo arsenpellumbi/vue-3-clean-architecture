@@ -1,12 +1,15 @@
-import { injectable } from 'inversify';
+import { interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
 import { Module } from '~/core/types';
 import { HomeModule } from './home';
 import { ProjectManagerModule } from './project-manager';
 import { AuthenticationModule } from './authentication';
 import { ErrorModule } from './error';
 
-@injectable()
-export class ModuleProvider {
+export const APP_MODULES: interfaces.ServiceIdentifier<AppModules> = 'APP_MODULES';
+
+@provide<AppModules>(APP_MODULES, true)
+export class AppModules {
   private _modules: Module[];
 
   get routes() {

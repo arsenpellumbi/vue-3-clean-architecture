@@ -1,4 +1,4 @@
-import { ApiInterceptor } from '~/services/api/api-interceptors';
+import { ApiInterceptor, API_INTERCEPTOR } from '~/services/api/api-interceptors';
 import { PluginParams } from '~/core/types';
 import { container } from '~/inversify.config';
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -10,7 +10,7 @@ declare module '@vue/runtime-core' {
 }
 
 export default function <TStore>({ app }: PluginParams<TStore>) {
-  const apiInterceptor = container.get<ApiInterceptor>(ApiInterceptor);
+  const apiInterceptor = container.get<ApiInterceptor>(API_INTERCEPTOR);
 
   axios.defaults.headers = {
     'Access-Control-Allow-Origin': '*',

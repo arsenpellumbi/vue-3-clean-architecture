@@ -21,16 +21,15 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { InjectDependency } from '~/shell/decorators';
-import { InjectableType } from '~/core/enums';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
+import { lazyInject } from '~/inversify.config';
 import { Configurations } from '~/core/configurations';
+import { AuthenticationStore, AUTHENTICATION_STORE } from '~/store/authentication-store';
 
 export default class OidcLogin extends Vue {
-  @InjectDependency(InjectableType.IAuthenticationStore)
-  private readonly _authenticationStore!: IAuthenticationStore;
+  @lazyInject(AUTHENTICATION_STORE)
+  private readonly _authenticationStore!: AuthenticationStore;
 
-  @InjectDependency(Configurations)
+  @lazyInject(Configurations)
   private readonly _configurations!: Configurations;
 
   loading = false;

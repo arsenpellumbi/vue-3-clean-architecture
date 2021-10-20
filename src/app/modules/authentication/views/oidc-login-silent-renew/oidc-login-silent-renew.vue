@@ -15,13 +15,12 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { InjectDependency } from '~/shell/decorators';
-import { InjectableType } from '~/core/enums';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
+import { lazyInject } from '~/inversify.config';
+import { AuthenticationStore, AUTHENTICATION_STORE } from '~/store/authentication-store';
 
 export default class OidcLoginSilentRenew extends Vue {
-  @InjectDependency(InjectableType.IAuthenticationStore)
-  private readonly _authenticationStore!: IAuthenticationStore;
+  @lazyInject(AUTHENTICATION_STORE)
+  private readonly _authenticationStore!: AuthenticationStore;
 
   async mounted() {
     await this._authenticationStore.signinSilentCallback();

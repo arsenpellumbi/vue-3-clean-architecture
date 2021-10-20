@@ -127,10 +127,9 @@
 </template>
 
 <script lang="ts">
-import { InjectableType } from '~/core/enums';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
-import { InjectDependency } from '~/shell/decorators';
 import { Options, Vue } from 'vue-class-component';
+import { lazyInject } from '~/inversify.config';
+import { AuthenticationStore, AUTHENTICATION_STORE } from '~/store/authentication-store';
 
 @Options({
   watch: {
@@ -140,8 +139,8 @@ import { Options, Vue } from 'vue-class-component';
   },
 })
 export default class MainLayout extends Vue {
-  @InjectDependency(InjectableType.IAuthenticationStore)
-  private readonly _authenticationStore!: IAuthenticationStore;
+  @lazyInject(AUTHENTICATION_STORE)
+  private readonly _authenticationStore!: AuthenticationStore;
 
   leftDrawerOpen = false;
   searchEnabled = false;

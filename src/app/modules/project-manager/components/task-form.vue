@@ -53,13 +53,11 @@
 <script lang="ts">
 /* eslint-disable no-undef */
 import { Vue, Options, prop } from 'vue-class-component';
-import { InjectDependency } from '~/shell/decorators';
-import { InjectableType as CoreInjectableType } from '~/core/enums';
-import { InjectableType } from '~/core/enums';
+import { lazyInject } from '~/inversify.config';
 import { TaskType } from '~/core/enums';
-import { IToastService } from '~/core/interfaces/services';
-import { ITaskStore } from '~/core/interfaces/stores';
 import { Task } from '~/core/models';
+import { ToastService, TOAST_SERVICE } from '~/services/toast-service';
+import { TaskStore, TASK_STORE } from '~/store/task-store';
 
 class Props {
   readonly projectId = prop<Guid>({
@@ -85,11 +83,11 @@ class Props {
   emits: ['update:value'],
 })
 export default class TaskForm extends Vue.with(Props) {
-  @InjectDependency(InjectableType.ITaskStore)
-  private readonly _taskStore!: ITaskStore;
+  @lazyInject(TASK_STORE)
+  private readonly _taskStore!: TaskStore;
 
-  @InjectDependency(CoreInjectableType.IToastService)
-  readonly _toast!: IToastService;
+  @lazyInject(TOAST_SERVICE)
+  readonly _toast!: ToastService;
 
   mutableTask: Task = new Task();
 

@@ -50,12 +50,10 @@
 
 <script lang="ts">
 import { Vue, prop, Options } from 'vue-class-component';
-import { InjectDependency } from '~/shell/decorators';
-import { IToastService } from '~/core/interfaces/services';
-import { InjectableType as CoreInjectableType } from '~/core/enums';
-import { InjectableType } from '~/core/enums';
-import { IProjectStore } from '~/core/interfaces/stores';
+import { lazyInject } from '~/inversify.config';
 import { Project } from '~/core/models';
+import { ToastService, TOAST_SERVICE } from '~/services/toast-service';
+import { ProjectStore, PROJECT_STORE } from '~/store/project-store';
 
 class Props {
   readonly project = prop<Project>({
@@ -77,11 +75,11 @@ class Props {
   emits: ['update:value'],
 })
 export default class ProjectForm extends Vue.with(Props) {
-  @InjectDependency(InjectableType.IProjectStore)
-  private readonly _projectStore!: IProjectStore;
+  @lazyInject(PROJECT_STORE)
+  private readonly _projectStore!: ProjectStore;
 
-  @InjectDependency(CoreInjectableType.IToastService)
-  private readonly _toast!: IToastService;
+  @lazyInject(TOAST_SERVICE)
+  private readonly _toast!: ToastService;
 
   mutableProject: Project = new Project();
 

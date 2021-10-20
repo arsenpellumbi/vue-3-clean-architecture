@@ -1,12 +1,11 @@
 import { date } from 'quasar';
 
 import { Vue, Options } from 'vue-class-component';
-import { InjectDependency } from '~/shell/decorators';
+import { lazyInject } from '~/inversify.config';
 
 import ProjectForm from '../../components/project-form.vue';
-import { InjectableType } from '~/core/enums';
 import { Project } from '~/core/models';
-import { IProjectStore } from '~/core/interfaces/stores';
+import { ProjectStore, PROJECT_STORE } from '~/store/project-store';
 
 @Options({
   components: {
@@ -23,8 +22,8 @@ import { IProjectStore } from '~/core/interfaces/stores';
   },
 })
 export default class ProjectList extends Vue {
-  @InjectDependency(InjectableType.IProjectStore)
-  private readonly _projectStore!: IProjectStore;
+  @lazyInject(PROJECT_STORE)
+  private readonly _projectStore!: ProjectStore;
 
   createProjectForm = false;
   editProjectForm = false;

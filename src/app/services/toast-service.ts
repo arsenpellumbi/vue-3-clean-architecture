@@ -1,9 +1,11 @@
 import { Notify } from 'quasar';
-import { injectable } from 'inversify';
-import { IToastService } from '~/core/interfaces/services';
+import { interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
 
-@injectable()
-export class ToastService implements IToastService {
+export const TOAST_SERVICE: interfaces.ServiceIdentifier<ToastService> = 'TOAST_SERVICE';
+
+@provide<ToastService>(TOAST_SERVICE)
+export class ToastService {
   public success(message: string): void {
     Notify.create({
       type: 'positive',

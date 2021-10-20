@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import appsettings from '~/appsettings.json';
-import { injectable } from 'inversify';
+import { interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
 
 interface ProjectManagerApiConfig {
   baseUrl: string;
@@ -28,7 +29,9 @@ interface IdentityConfig {
   silentRedirectUri: string;
 }
 
-@injectable()
+export const CONFIGURATIONS: interfaces.ServiceIdentifier<Configurations> = 'CONFIGURATIONS';
+
+@provide<Configurations>(CONFIGURATIONS, true)
 export class Configurations {
   public title!: string;
   public initialRoutePath!: string;

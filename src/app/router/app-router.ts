@@ -1,12 +1,14 @@
 import navigationGuard from './navigation-guards';
-import { inject, injectable } from 'inversify';
-import { InjectableType } from '~/core/enums';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
-import { ModuleProvider } from '~/modules';
-import { Configurations } from '~/core/configurations';
+import { inject, interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
+import { AppModules, APP_MODULES } from '~/modules/app-modules';
+import { CONFIGURATIONS, Configurations } from '~/core/configurations';
 import { Router, createRouter, createWebHistory, RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
+import { AuthenticationStore, AUTHENTICATION_STORE } from '~/store/authentication-store';
 
-@injectable()
+export const APP_ROUTER: interfaces.ServiceIdentifier<AppRouter> = 'APP_ROUTER';
+
+@provide<AppRouter>(APP_ROUTER, true)
 export class AppRouter {
   private _router: Router;
 
@@ -15,9 +17,9 @@ export class AppRouter {
   }
 
   constructor(
-    @inject(Configurations) configurations: Configurations,
-    @inject(ModuleProvider) moduleProvider: ModuleProvider,
-    @inject(InjectableType.IAuthenticationStore) authenticationStore: IAuthenticationStore
+    @inject(CONFIGURATIONS) configurations: Configurations,
+    @inject(APP_MODULES) moduleProvider: AppModules,
+    @inject(AUTHENTICATION_STORE) authenticationStore: AuthenticationStore
   ) {
     this._router = createRouter({
       scrollBehavior: () => ({ left: 0, top: 0 }),

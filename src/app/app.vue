@@ -7,14 +7,13 @@
   </div>
 </template>
 <script lang="ts">
-import { InjectableType } from '~/core/enums';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
-import { InjectDependency } from '~/shell/decorators';
 import { Vue } from 'vue-class-component';
+import { lazyInject } from '~/inversify.config';
+import { AuthenticationStore, AUTHENTICATION_STORE } from './store/authentication-store';
 
 export default class App extends Vue {
-  @InjectDependency(InjectableType.IAuthenticationStore)
-  private readonly _authenticationStore!: IAuthenticationStore;
+  @lazyInject(AUTHENTICATION_STORE)
+  private readonly _authenticationStore!: AuthenticationStore;
 
   public name = 'App';
 

@@ -1,20 +1,14 @@
-import { ProjectList, Project } from '~/core/models';
-import {
-  GetProjectsPayload,
-  SearchProjectsPayload,
-  GetProjectByIdPayload,
-  CreateProjectPayload,
-  UpdateProjectPayload,
-  DeleteProjectPayload,
-} from '~/core/interfaces/payloads';
-import { IProjectService } from '~/core/interfaces/services';
-import { ProjectStoreState, AppStoreState } from '~/core/interfaces/stores';
 import { ActionTree, ActionContext } from 'vuex';
+import { ProjectList, Project } from '~/core/models';
+import { ProjectPayloads } from '~/core/payloads';
+import { ProjectService } from '~/services/project-service';
+import { AppStoreState } from '../app-store';
+import { ProjectStoreState } from './state';
 
-export const useActions = (projectService: IProjectService): ActionTree<ProjectStoreState, AppStoreState> => ({
+export const useActions = (projectService: ProjectService): ActionTree<ProjectStoreState, AppStoreState> => ({
   async fetchProjects(
     context: ActionContext<ProjectStoreState, AppStoreState>,
-    payload: GetProjectsPayload
+    payload: ProjectPayloads.GetProjectsPayload
   ): Promise<void> {
     const result = await projectService.getProjects(payload);
     context.commit('setProjects', result);
@@ -22,7 +16,7 @@ export const useActions = (projectService: IProjectService): ActionTree<ProjectS
 
   async searchProjects(
     context: ActionContext<ProjectStoreState, AppStoreState>,
-    payload: SearchProjectsPayload
+    payload: ProjectPayloads.SearchProjectsPayload
   ): Promise<void> {
     const result = await projectService.searchProjects(payload);
     context.commit('setProjects', result);
@@ -30,7 +24,7 @@ export const useActions = (projectService: IProjectService): ActionTree<ProjectS
 
   async getProjectById(
     context: ActionContext<ProjectStoreState, AppStoreState>,
-    payload: GetProjectByIdPayload
+    payload: ProjectPayloads.GetProjectByIdPayload
   ): Promise<Project> {
     const project = context.state.projectList.rows.find((project: Project) => project.id == payload.id);
     if (project) {
@@ -42,7 +36,7 @@ export const useActions = (projectService: IProjectService): ActionTree<ProjectS
 
   async createProject(
     context: ActionContext<ProjectStoreState, AppStoreState>,
-    payload: CreateProjectPayload
+    payload: ProjectPayloads.CreateProjectPayload
   ): Promise<void> {
     const id = await projectService.createProject(payload);
 
@@ -51,7 +45,7 @@ export const useActions = (projectService: IProjectService): ActionTree<ProjectS
 
   async updateProject(
     context: ActionContext<ProjectStoreState, AppStoreState>,
-    payload: UpdateProjectPayload
+    payload: ProjectPayloads.UpdateProjectPayload
   ): Promise<void> {
     await projectService.updateProject(payload);
 
@@ -62,7 +56,7 @@ export const useActions = (projectService: IProjectService): ActionTree<ProjectS
 
   async deleteProject(
     context: ActionContext<ProjectStoreState, AppStoreState>,
-    payload: DeleteProjectPayload
+    payload: ProjectPayloads.DeleteProjectPayload
   ): Promise<void> {
     await projectService.deleteProject(payload);
     context.commit('deleteProject', payload.id);

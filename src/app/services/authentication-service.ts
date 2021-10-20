@@ -1,15 +1,17 @@
-import { Configurations } from '~/core/configurations';
-import { IAuthenticationService } from '~/core/interfaces/services';
+import { inject, interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
+import { CONFIGURATIONS, Configurations } from '~/core/configurations';
 import { User } from '~/core/models';
-import { injectable, inject } from 'inversify';
 import { UserManager, UserManagerSettings, WebStorageStateStore } from 'oidc-client';
 
-@injectable()
-export class AuthenticationService implements IAuthenticationService {
+export const AUTHENTICATION_SERVICE: interfaces.ServiceIdentifier<AuthenticationService> = 'AUTHENTICATION_SERVICE';
+
+@provide<AuthenticationService>(AUTHENTICATION_SERVICE)
+export class AuthenticationService {
   private userManager: UserManager;
   private _config: Configurations;
 
-  constructor(@inject(Configurations) config: Configurations) {
+  constructor(@inject(CONFIGURATIONS) config: Configurations) {
     this._config = config;
     const settings: UserManagerSettings = {
       userStore: new WebStorageStateStore({ store: window.localStorage }),

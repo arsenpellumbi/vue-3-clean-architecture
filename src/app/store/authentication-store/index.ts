@@ -1,25 +1,29 @@
-import { InjectableType } from '~/core/enums';
+import { inject, interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
 import { User } from '~/core/models';
-import { IAuthenticationService } from '~/core/interfaces/services';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
-import { injectable, inject } from 'inversify';
 import { useActions } from './actions';
 import { useGetters } from './getters';
 import { useMutations } from './mutations';
 import { useState } from './state';
-import { AppStore } from '~/store';
-import { BaseStore } from '~/store/base-store';
+import { AuthenticationService, AUTHENTICATION_SERVICE } from '~/services/authentication-service';
+import { AppStore, APP_STORE } from '../app-store';
 
-@injectable()
-export class AuthenticationStore extends BaseStore implements IAuthenticationStore {
+export const AUTHENTICATION_STORE: interfaces.ServiceIdentifier<AuthenticationStore> = 'AUTHENTICATION_STORE';
+
+@provide<AuthenticationStore>(AUTHENTICATION_STORE)
+export class AuthenticationStore {
+  private readonly _namespace: string;
+  private readonly _appStore: AppStore;
+
   constructor(
-    @inject(AppStore) store: AppStore,
-    @inject(InjectableType.IAuthenticationService) authenticationService: IAuthenticationService
+    @inject(APP_STORE) appStore: AppStore,
+    @inject(AUTHENTICATION_SERVICE) authenticationService: AuthenticationService
   ) {
-    super(store, 'authentication-store');
+    this._namespace = 'authentication-store';
+    this._appStore = appStore;
 
-    if (!this.store.hasModule(this.namespace)) {
-      this.store.registerModule(this.namespace, {
+    if (!this._appStore.store.hasModule(this._namespace)) {
+      this._appStore.store.registerModule(this._namespace, {
         namespaced: true,
         actions: useActions(authenticationService),
         getters: useGetters(),
@@ -30,42 +34,48 @@ export class AuthenticationStore extends BaseStore implements IAuthenticationSto
   }
 
   get user(): User {
-    return (this.store.getters as { [key: string]: User })[`${this.namespace}/user`];
+    return (this._appStore.store.getters as { [key: string]: User })[`${this._namespace}/user`];
   }
 
   get isAuthenticating(): boolean {
-    return (this.store.getters as { [key: string]: boolean })[`${this.namespace}/isAuthenticating`];
+    return (this._appStore.store.getters as { [key: string]: boolean })[`${this._namespace}/isAuthenticating`];
   }
 
   async login(returnPath: string): Promise<void> {
-    return (await this.store.dispatch(`${this.namespace}/login`, returnPath)) as Promise<void>;
+    return (await this._appStore.store.dispatch(`${this._namespace}/login`, returnPath)) as Promise<void>;
   }
 
   async logout(): Promise<void> {
-    return (await this.store.dispatch(`${this.namespace}/logout`)) as Promise<void>;
+    return (await this._appStore.store.dispatch(`${this._namespace}/logout`)) as Promise<void>;
   }
 
   async authenticate(returnPath: string): Promise<void> {
-    return (await this.store.dispatch(`${this.namespace}/authenticate`, returnPath)) as Promise<void>;
+    return (await this._appStore.store.dispatch(`${this._namespace}/authenticate`, returnPath)) as Promise<void>;
   }
 
   async isUserLoggedIn(): Promise<boolean> {
-    return (await this.store.dispatch(`${this.namespace}/isUserLoggedIn`)) as Promise<boolean>;
+    return (await this._appStore.store.dispatch(`${this._namespace}/isUserLoggedIn`)) as Promise<boolean>;
   }
 
   async signinRedirectCallback(returnPath: string): Promise<void> {
-    return (await this.store.dispatch(`${this.namespace}/signinRedirectCallback`, returnPath)) as Promise<void>;
+    return (await this._appStore.store.dispatch(
+      `${this._namespace}/signinRedirectCallback`,
+      returnPath
+    )) as Promise<void>;
   }
 
   async signoutRedirectCallback(returnPath: string): Promise<void> {
-    return (await this.store.dispatch(`${this.namespace}/signoutRedirectCallback`, returnPath)) as Promise<void>;
+    return (await this._appStore.store.dispatch(
+      `${this._namespace}/signoutRedirectCallback`,
+      returnPath
+    )) as Promise<void>;
   }
 
   async signinSilentCallback(): Promise<void> {
-    return (await this.store.dispatch(`${this.namespace}/signinSilentCallback`)) as Promise<void>;
+    return (await this._appStore.store.dispatch(`${this._namespace}/signinSilentCallback`)) as Promise<void>;
   }
 
   async reset(): Promise<void> {
-    return (await this.store.dispatch(`${this.namespace}/reset`)) as Promise<void>;
+    return (await this._appStore.store.dispatch(`${this._namespace}/reset`)) as Promise<void>;
   }
 }

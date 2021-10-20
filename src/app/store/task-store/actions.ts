@@ -1,20 +1,14 @@
 import { TaskList, Task } from '~/core/models';
-import {
-  GetTasksByProjectIdPayload,
-  SearchTasksInProjectPayload,
-  GetTaskByIdPayload,
-  CreateTaskPayload,
-  UpdateTaskPayload,
-  DeleteTaskPayload,
-} from '~/core/interfaces/payloads';
-import { ITaskService } from '~/core/interfaces/services';
-import { TaskStoreState, AppStoreState } from '~/core/interfaces/stores';
+import { TaskPayloads } from '~/core/payloads';
 import { ActionTree, ActionContext } from 'vuex';
+import { TaskService } from '~/services/task-service';
+import { AppStoreState } from '../app-store';
+import { TaskStoreState } from './state';
 
-export const useActions = (taskService: ITaskService): ActionTree<TaskStoreState, AppStoreState> => ({
+export const useActions = (taskService: TaskService): ActionTree<TaskStoreState, AppStoreState> => ({
   async fetchTasks(
     context: ActionContext<TaskStoreState, AppStoreState>,
-    payload: GetTasksByProjectIdPayload
+    payload: TaskPayloads.GetTasksByProjectIdPayload
   ): Promise<void> {
     const result = await taskService.getTasks(payload);
     context.commit('setTasks', result);
@@ -22,13 +16,16 @@ export const useActions = (taskService: ITaskService): ActionTree<TaskStoreState
 
   async searchTasks(
     context: ActionContext<TaskStoreState, AppStoreState>,
-    payload: SearchTasksInProjectPayload
+    payload: TaskPayloads.SearchTasksInProjectPayload
   ): Promise<void> {
     const result = await taskService.searchTasks(payload);
     context.commit('setTasks', result);
   },
 
-  async getTaskById(context: ActionContext<TaskStoreState, AppStoreState>, payload: GetTaskByIdPayload): Promise<Task> {
+  async getTaskById(
+    context: ActionContext<TaskStoreState, AppStoreState>,
+    payload: TaskPayloads.GetTaskByIdPayload
+  ): Promise<Task> {
     const task = context.state.taskList.rows.filter((task: Task) => task.id == payload.id)[0];
     if (task) {
       return task;
@@ -37,7 +34,10 @@ export const useActions = (taskService: ITaskService): ActionTree<TaskStoreState
     return await taskService.getTask(payload);
   },
 
-  async createTask(context: ActionContext<TaskStoreState, AppStoreState>, payload: CreateTaskPayload): Promise<void> {
+  async createTask(
+    context: ActionContext<TaskStoreState, AppStoreState>,
+    payload: TaskPayloads.CreateTaskPayload
+  ): Promise<void> {
     const id = await taskService.createTask(payload);
 
     context.commit(
@@ -46,7 +46,10 @@ export const useActions = (taskService: ITaskService): ActionTree<TaskStoreState
     );
   },
 
-  async updateTask(context: ActionContext<TaskStoreState, AppStoreState>, payload: UpdateTaskPayload): Promise<void> {
+  async updateTask(
+    context: ActionContext<TaskStoreState, AppStoreState>,
+    payload: TaskPayloads.UpdateTaskPayload
+  ): Promise<void> {
     await taskService.updateTask(payload);
 
     const task = context.state.taskList.rows.find((task: Task) => task.id == payload.id);
@@ -58,7 +61,10 @@ export const useActions = (taskService: ITaskService): ActionTree<TaskStoreState
       );
   },
 
-  async deleteTask(context: ActionContext<TaskStoreState, AppStoreState>, payload: DeleteTaskPayload): Promise<void> {
+  async deleteTask(
+    context: ActionContext<TaskStoreState, AppStoreState>,
+    payload: TaskPayloads.DeleteTaskPayload
+  ): Promise<void> {
     await taskService.deleteTask(payload);
     context.commit('deleteTask', payload.id);
     if (context.state.taskList.rows.length === 0) {

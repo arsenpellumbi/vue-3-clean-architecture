@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { injectable } from 'inversify';
-import { IIndexDbService } from '~/core/interfaces/services';
+import { interfaces } from 'inversify';
+import { provide } from '~/inversify.config';
 
 const _appIndexedDbCollections = ['Projects', 'Tasks'];
 let _appIndexedDB: IDBDatabase | null = null;
@@ -25,8 +25,10 @@ request.onupgradeneeded = (e: Event): void => {
   }
 };
 
-@injectable()
-export class IndexDbService implements IIndexDbService {
+export const INDEX_DB_SERVICE: interfaces.ServiceIdentifier<IndexDbService> = 'INDEX_DB_SERVICE';
+
+@provide<IndexDbService>(INDEX_DB_SERVICE)
+export class IndexDbService {
   async getObjects<T>(collection: string): Promise<T[]> {
     return await new Promise((resolve, reject) => {
       if (!_appIndexedDB) return reject();

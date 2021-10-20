@@ -1,12 +1,12 @@
 import { date } from 'quasar';
 import { Vue, Options } from 'vue-class-component';
 
-import { InjectDependency } from '~/shell/decorators';
+import { lazyInject } from '~/inversify.config';
 import TaskForm from '../../components/task-form.vue';
 
-import { InjectableType } from '~/core/enums';
 import { Project, Task } from '~/core/models';
-import { IProjectStore, ITaskStore } from '~/core/interfaces/stores';
+import { ProjectStore, PROJECT_STORE } from '~/store/project-store';
+import { TaskStore, TASK_STORE } from '~/store/task-store';
 
 @Options({
   components: {
@@ -24,11 +24,11 @@ import { IProjectStore, ITaskStore } from '~/core/interfaces/stores';
   },
 })
 export default class ProjectItem extends Vue {
-  @InjectDependency(InjectableType.IProjectStore)
-  private readonly _projectStore!: IProjectStore;
+  @lazyInject(PROJECT_STORE)
+  private readonly _projectStore!: ProjectStore;
 
-  @InjectDependency(InjectableType.ITaskStore)
-  private readonly _taskStore!: ITaskStore;
+  @lazyInject(TASK_STORE)
+  private readonly _taskStore!: TaskStore;
 
   project: Project = new Project();
   createTaskForm = false;

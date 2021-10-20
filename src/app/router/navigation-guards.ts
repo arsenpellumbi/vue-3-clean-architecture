@@ -1,9 +1,9 @@
 import { RouteLocationNormalized, NavigationGuardNext } from 'vue-router';
-import { IAuthenticationStore } from '~/core/interfaces/stores';
+import { AuthenticationStore } from '~/store/authentication-store';
 
 export default {
   beforeEach: async (
-    authenticationStore: IAuthenticationStore,
+    authenticationStore: AuthenticationStore,
     to: RouteLocationNormalized,
     from: RouteLocationNormalized,
     next: NavigationGuardNext
