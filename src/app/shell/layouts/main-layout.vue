@@ -148,7 +148,7 @@ export default class MainLayout extends Vue {
   storage = 0.26;
   links1 = [
     { icon: 'mdi-home', text: 'Home', path: '/home' },
-    { icon: 'mdi-folder-table', text: 'Projects', path: '/project-manager' },
+    { icon: 'mdi-folder-table', text: 'Projects', path: '/projects' },
   ];
   darkMode = false;
 

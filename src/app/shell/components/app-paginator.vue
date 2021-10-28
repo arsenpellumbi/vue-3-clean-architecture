@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { Pagination } from '~/core/models';
+import { Pagination } from '~/core/models/pagination.model';
 import { Vue, prop, Options } from 'vue-class-component';
 
 class Props {

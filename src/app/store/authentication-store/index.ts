@@ -1,6 +1,6 @@
 import { inject, interfaces } from 'inversify';
 import { provide } from '~/inversify.config';
-import { User } from '~/core/models';
+import { User } from '~/core/models/user.model';
 import { useActions } from './actions';
 import { useGetters } from './getters';
 import { useMutations } from './mutations';

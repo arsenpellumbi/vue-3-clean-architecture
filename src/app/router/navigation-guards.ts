@@ -8,9 +8,9 @@ export default {
     from: RouteLocationNormalized,
     next: NavigationGuardNext
   ): Promise<void> => {
-    if (!to.meta.requireAuthentication) {
+   // if (!to.meta.requireAuthentication) {
       return next();
-    }
+    //}
 
     const isAuthenticated = await authenticationStore.isUserLoggedIn();
     if (isAuthenticated) return next();

@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex';
-import { User } from '~/core/models';
+import { User } from '~/core/models/user.model';
 import { AuthenticationStoreState } from './state';
 
 export const useMutations = (): MutationTree<AuthenticationStoreState> => ({

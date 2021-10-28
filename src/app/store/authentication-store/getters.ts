@@ -1,4 +1,4 @@
-import { User } from '~/core/models';
+import { User } from '~/core/models/user.model';
 import { GetterTree } from 'vuex';
 import { AppStoreState } from '../app-store';
 import { AuthenticationStoreState } from './state';

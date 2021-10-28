@@ -22,7 +22,7 @@ export class ErrorModule implements Module {
     };
   }
 
-  public get routeConfig(): RouteRecordRaw {
+  public get route(): RouteRecordRaw {
     return this._routeConfig;
   }
 }

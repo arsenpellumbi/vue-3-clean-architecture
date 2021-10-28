@@ -1,4 +1,4 @@
-import { User } from '~/core/models';
+import { User } from '~/core/models/user.model';
 
 export interface AuthenticationStoreState {
   user: User | null;

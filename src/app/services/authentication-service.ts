@@ -1,7 +1,7 @@
 import { inject, interfaces } from 'inversify';
 import { provide } from '~/inversify.config';
 import { CONFIGURATIONS, Configurations } from '~/core/configurations';
-import { User } from '~/core/models';
+import { User } from '~/core/models/user.model';
 import { UserManager, UserManagerSettings, WebStorageStateStore } from 'oidc-client';
 
 export const AUTHENTICATION_SERVICE: interfaces.ServiceIdentifier<AuthenticationService> = 'AUTHENTICATION_SERVICE';
