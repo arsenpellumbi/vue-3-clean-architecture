@@ -1,4 +1,4 @@
-import { CONFIGURATIONS, Configurations } from '~/core/configurations';
+import { CONFIGURATIONS, Configurations } from '~/core/configurations/configurations';
 import axios, { AxiosResponse } from 'axios';
 import { inject, interfaces } from 'inversify';
 import { provide } from '~/inversify.config';

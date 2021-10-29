@@ -4,7 +4,7 @@ import { useState } from './state';
 import { useActions } from './actions';
 import { useGetters } from './getters';
 import { useMutations } from './mutations';
-import { AppStore, APP_STORE } from '~/store/app-store';
+import { AppStore, APP_STORE } from '~/app.store';
 import { ProjectList, Project } from '../../models/project.model';
 import { ProjectPayloads } from '../../payloads';
 import { ProjectService, PROJECT_SERVICE } from '../../services/project-service';

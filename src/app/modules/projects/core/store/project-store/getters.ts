@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex';
-import { AppStoreState } from '~/store/app-store';
+import { AppStoreState } from '~/app.store';
 import { ProjectList } from '../../models/project.model';
 import { ProjectStoreState } from './state';
 

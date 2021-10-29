@@ -1,6 +1,6 @@
 import { Vue, prop, Options } from 'vue-class-component';
 import { lazyInject } from '~/inversify.config';
-import { ToastService, TOAST_SERVICE } from '~/services/toast-service';
+import { ToastService, TOAST_SERVICE } from '~/core/services/toast-service';
 import { Project } from '../core/models/project.model';
 import { ProjectStore, PROJECT_STORE } from '../core/store/project-store';
 

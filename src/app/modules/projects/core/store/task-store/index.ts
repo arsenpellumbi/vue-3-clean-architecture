@@ -6,7 +6,7 @@ import { useActions } from './actions';
 import { useGetters } from './getters';
 import { useMutations } from './mutations';
 
-import { AppStore, APP_STORE } from '~/store/app-store';
+import { AppStore, APP_STORE } from '~/app.store';
 import { TaskList, Task } from '../../models/task.model';
 import { TaskPayloads } from '../../payloads';
 import { TASK_SERVICE, TaskService } from '../../services/task-service';

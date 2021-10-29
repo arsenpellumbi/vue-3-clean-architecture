@@ -1,6 +1,6 @@
 import { ActionTree, ActionContext } from 'vuex';
 import { TaskStoreState } from './state';
-import { AppStoreState } from '~/store/app-store';
+import { AppStoreState } from '~/app.store';
 import { Task, TaskList } from '../../models/task.model';
 import { TaskPayloads } from '../../payloads';
 import { TaskService } from '../../services/task-service';

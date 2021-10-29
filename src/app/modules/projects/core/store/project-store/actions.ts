@@ -1,5 +1,5 @@
 import { ActionTree, ActionContext } from 'vuex';
-import { AppStoreState } from '~/store/app-store';
+import { AppStoreState } from '~/app.store';
 import { Project, ProjectList } from '../../models/project.model';
 import { ProjectPayloads } from '../../payloads';
 import { ProjectService } from '../../services/project-service';

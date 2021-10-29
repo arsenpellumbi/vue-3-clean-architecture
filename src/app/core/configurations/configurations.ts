@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import appsettings from '~/appsettings.json';
+import appsettings from '~/app.settings.json';
 import { interfaces } from 'inversify';
 import { provide } from '~/inversify.config';
 

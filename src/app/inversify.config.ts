@@ -16,7 +16,6 @@ export function provide<T>(
   bind = true
 ) {
   return function (target: new (...args: any[]) => any) {
-    console.log(serviceIdentifier);
     const id = serviceIdentifier || target.name;
     try {
       decorate(injectable(), target);

@@ -9,7 +9,7 @@
 <script lang="ts">
 import { Vue } from 'vue-class-component';
 import { lazyInject } from '~/inversify.config';
-import { AuthenticationStore, AUTHENTICATION_STORE } from './store/authentication-store';
+import { AuthenticationStore, AUTHENTICATION_STORE } from '~/modules/authentication/core/store/authentication-store';
 
 export default class App extends Vue {
   @lazyInject(AUTHENTICATION_STORE)

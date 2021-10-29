@@ -1,6 +1,6 @@
 import { Vue, Options } from 'vue-class-component';
 import { lazyInject } from '~/inversify.config';
-import { ToastService, TOAST_SERVICE } from '~/services/toast-service';
+import { ToastService, TOAST_SERVICE } from '~/core/services/toast-service';
 import { TaskType } from '../core/enums/task-type.enum';
 import { Task } from '../core/models/task.model';
 import { TaskStore, TASK_STORE } from '../core/store/task-store';
